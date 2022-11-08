@@ -4,6 +4,6 @@ from sklearn.prepocessing import StandardScaler
 from sklearn.naive_bayes import BernoulliNB
 
 '''
-Sklearn Bernoulli Naive Bayes
-https://scikit-learn.org/stable/modules/naive_bayes.html#bernoulli-naive-bayes
+Sklearn Multinomial Naive Bayes
+https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html#sklearn.naive_bayes.MultinomialNB
 '''

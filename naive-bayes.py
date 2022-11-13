@@ -2,6 +2,7 @@ import re
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from math import sqrt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
@@ -47,8 +48,8 @@ confusion_result = confusion_matrix(y_testing, predicted)
 print(f'Confusion matrix: \n{confusion_result}\n')
 
 # comparison based on % accuracy
-test_result = classify.score(x_testing, y_testing)
-print(f'Comparison based on % accuracy: {test_result}\n')
+accuracy = classify.score(x_testing, y_testing)
+print(f'Comparison based on % accuracy: {accuracy}\n')
 
 # comparison based on sensitivity, specificity, and precision
 true_positives = confusion_result[0][0]
@@ -83,3 +84,7 @@ plt.ylabel("True Positive Rate (TPR)")
 plt.title('Testing actual data vs testing predicted data ROC')
 plt.legend(loc="lower right")
 plt.show()
+
+# 95% confidence interval for prediction accuracy
+interval = 1.96 * sqrt((accuracy*(1-accuracy))/ df_text.size * 0.2)
+print('%.3f' % interval)

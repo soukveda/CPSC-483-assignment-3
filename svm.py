@@ -2,6 +2,7 @@ import re
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from math import sqrt
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
@@ -49,8 +50,8 @@ confusion_result = confusion_matrix(y_testing, y_hat)
 print(f'Confusion matrix: \n{confusion_result}\n')
 
 # comparison based on % accuracy
-test_result = svm_classifier.score(x_testing, y_testing)
-print(f'Comparison based on % accuracy: {test_result}\n')
+accuracy = svm_classifier.score(x_testing, y_testing)
+print(f'Comparison based on % accuracy: {accuracy}\n')
 
 
 # comparison based on sensitivity, specificity, and precision
@@ -86,3 +87,7 @@ plt.ylabel("True Positive Rate (TPR)")
 plt.title('Testing actual data vs testing predicted data ROC')
 plt.legend(loc="lower right")
 plt.show()
+
+# 95% confidence interval for prediction accuracy
+interval = 1.96 * sqrt((accuracy*(1-accuracy))/ df_text.size * 0.2)
+print('%.3f' % interval)
